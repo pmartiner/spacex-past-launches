@@ -1,5 +1,5 @@
 // Libraries
-import { FC } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 import styled from 'styled-components';
 
 // Assets
@@ -15,7 +15,7 @@ type Props = {
 
 type ToggleButtonProps = {
   lightTheme: boolean;
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
 const ToggleButton = styled.button<ToggleButtonProps>`
   background: ${({ theme }) => theme.secondaryColor2};
@@ -49,10 +49,12 @@ const ToggleButton = styled.button<ToggleButtonProps>`
   }
 `;
 
-const ThemeToggleButton: FC<Props> = ({ theme, toggleTheme }) => {
+const ThemeToggleButton: FC<Props> = ({ theme, toggleTheme, ...rest }) => {
   const isLight = theme === 'light';
+
   return (
     <ToggleButton
+      {...rest}
       lightTheme={isLight}
       onClick={toggleTheme}
       aria-label={`Toggle ${isLight ? 'light' : 'dark'} theme`}

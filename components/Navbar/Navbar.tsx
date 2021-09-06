@@ -33,14 +33,19 @@ type NavbarUlProps = {
 }
 
 const NavbarUl = styled.ul<NavbarUlProps>`
-  list-style-type: none; 
+  list-style-type: none;
+  display: flex;
 
   @media screen and (min-width: 1268px) {
-    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
   }
 
   @media screen and (max-width: 1267px) {
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 0;
     position: absolute;
     top: 100%;
     right: 0;
@@ -84,12 +89,25 @@ const NavbarMenuButton = styled.button`
 `;
 
 const NavItem = styled.li`
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    background-color: ${({ theme }) => theme.backgroundColorDark};
+  }
+
   & a {
-    display: block;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
     font-size: 14px;
     font-weight: 400;
     text-transform: uppercase;
-    padding: 8px 20px;
+    padding: 20px;
     text-decoration: none;
     color: ${({ theme }) => theme.fontColor};
     transition: 0.2s;
@@ -99,9 +117,13 @@ const NavItem = styled.li`
     position: relative;
   }
 
-  &.active a,
-  & a:hover {
+  &.active a {
     color: ${({ theme }) => theme.fontColorActive};
+    outline: 0;
+  }
+
+  & a:hover {
+    color: ${({ theme }) => theme.fontColorHover};
     outline: 0;
   }
 
@@ -113,6 +135,16 @@ const NavItem = styled.li`
   }
 
   @media screen and (min-width: 1268px) {
+    width: auto;
+
+    & a {
+      padding: 8px 20px;
+    }
+
+    &.active {
+      background-color: transparent;
+    }
+
     & a:not(:hover):not(:focus)::after {
       height: 0;
       width: 0;
@@ -127,7 +159,7 @@ const NavItem = styled.li`
       transition-timing-function: cubic-bezier(0.58, 0.3, 0.005, 1);
       z-index: 2;
       transform: scale(1);
-      background-color: ${({ theme }) => theme.fontColorActive};
+      background-color: ${({ theme }) => theme.fontColorHover};
       display: block;
       position: absolute;
       content: "";
@@ -135,6 +167,10 @@ const NavItem = styled.li`
       height: 3px;
       width: 70%;
       left: 15%;
+    }
+
+    &.active a::after {
+      background-color: ${({ theme }) => theme.fontColorActive};
     }
 
     &.active a::after,
@@ -165,7 +201,11 @@ const RegularAnchorStyle = css`
 
 const LogoUrl = styled.a`
   ${RegularAnchorStyle}
-  font-size: 24px;
+  font-size: 20px;
+
+  @media screen and (min-width: 1268px) {
+    font-size: 28px;
+  }
 `;
 
 const NavbarBrandLogo = styled.img`
@@ -179,12 +219,21 @@ const NavbarBrandLogo = styled.img`
 const GitHubUrl = styled.a`
   ${RegularAnchorStyle}
   font-size: 18px;
-  padding-right: 30px;
-  padding-left: 20px;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
   
   @media screen and (min-width: 1268px) {
-    padding-left: 15px;
+    padding: 15px 20px;
+    display: block;
+    width: auto;
   }
+`;
+
+const ToggleThemeContainer = styled.div`
+  padding: 10px 15px;;
 `;
 
 type URLType = {
@@ -249,10 +298,12 @@ const Navbar: FC<Props> = (props: Props) => {
             >
               <GitHub />
             </GitHubUrl>
-            <ThemeToggleButton
-              theme={props.theme}
-              toggleTheme={props.toggleTheme}
-            />
+            <ToggleThemeContainer>
+              <ThemeToggleButton
+                theme={props.theme}
+                toggleTheme={props.toggleTheme}
+              />
+            </ToggleThemeContainer>
           </NavbarUl>
         </nav>
       </NavbarWrapper>
