@@ -43,6 +43,8 @@ const NavbarUl = styled.ul<NavbarUlProps>`
     opacity: ${props => props.active ? 1 : 0};
     transform: ${props => props.active ? 'translateY(0)' : 'translateY(-100%)'};
     transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    margin: 0;
+    padding-bottom: 20px;
   }
 `;
 
@@ -64,6 +66,9 @@ const NavbarMenuButton = styled.button`
   height: 30px;
   width: 30px;
   background-color: transparent;
+  padding: 0;
+  border: 0;
+  margin: 0;
 
   @media screen and (max-width: 1024px) {
     display: block;
@@ -125,6 +130,12 @@ const NavItem = styled.li`
   }
 `;
 
+const LogoUrl = styled.a`
+  color: ${({ theme }) => theme.fontColor};
+  text-decoration: none;
+  cursor: pointer;
+`;
+
 const NavbarBrandLogo = styled.img`
   max-width: 180px;
 
@@ -142,6 +153,7 @@ type Props = {
   logoUrl?: string;
   logoImgSrc?: string;
   logoImgAlt?: string;
+  logoText?: string;
   menuURLs?: URLType[];
   toggleTheme?: () => void;
   theme: string;
@@ -161,9 +173,12 @@ const Navbar: FC<Props> = (props: Props) => {
   return (
     <NavbarHeader>
       <NavbarWrapper>
-        <a href={props.logoUrl}>
-          <NavbarBrandLogo src={props.logoImgSrc} alt={props.logoImgAlt} />
-        </a>
+        <Link href='/' passHref>
+          <LogoUrl>
+            {!props.logoImgSrc && props.logoText}
+            <NavbarBrandLogo src={props.logoImgSrc} alt={props.logoImgAlt} />
+          </LogoUrl>
+        </Link>
         <nav>
           <NavbarMenuButton
             onClick={() => setToggle(!toggle)}

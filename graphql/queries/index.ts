@@ -1,8 +1,11 @@
 import { gql } from '@apollo/client';
 
+export const NUMBER_PAGES = 3;
+export const PAGE_SIZE = 12;
+
 export const PAST_LAUNCHES = gql`
-  {
-    launchesPast(limit: 10) {
+  query ($offset: Int!, $limit: Int!) {
+    launchesPast(offset: $offset, limit: $limit) {
       mission_name
       launch_site {
         site_name

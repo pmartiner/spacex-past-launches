@@ -1,20 +1,49 @@
 // Libraries
 import Head from 'next/head';
-import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 
 // Styles
 import Navbar from 'components/Navbar/Navbar';
-import { ThemeProvider } from 'styled-components';
+import styled, { css, ThemeProvider } from 'styled-components';
 import { darkTheme, GlobalStyles, lightTheme } from 'styles/theme';
 
 // Constants
-const name = 'Pablo Martínez';
-export const siteTitle = 'My first Next.js website!';
+export const siteTitle = 'SpaceX Past Launches';
 
 type Props = {
   home?: boolean;
 };
+
+const MainContent = styled.main`
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  width: 100%;
+  align-items: center;
+  padding: 30px 0;
+`;
+
+const OneColumnStyle = css`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+`;
+
+const MultiColumnStyle = css`
+  display: grid;
+  grid-template-columns: repeat(4, 300px);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 15px;
+`;
+
+const MainContentGrid = styled.div<Props>`
+  ${OneColumnStyle}
+  
+  @media only screen and (min-width: 1268px) {
+    ${({ home }) => home ? OneColumnStyle : MultiColumnStyle}
+  }
+`;
+
 
 const Layout: FC<Props> = ({ home, children }) => {
   const [theme, setTheme] = useState('light');
@@ -39,7 +68,7 @@ const Layout: FC<Props> = ({ home, children }) => {
         <link rel='icon' href='/favicon.ico' />
         <meta
           name='description'
-          content='Learning how to use Next.js :)'
+          content='SpaceX list of past launches'
         />
         <meta
           property='og:image'
@@ -52,8 +81,16 @@ const Layout: FC<Props> = ({ home, children }) => {
       </Head>
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <GlobalStyles />
-        <Navbar toggleTheme={toggleTheme} theme={theme}/>
-        <main>{children}</main>
+        <Navbar
+          logoText={siteTitle}
+          toggleTheme={toggleTheme}
+          theme={theme}
+        />
+        <MainContent>
+          <MainContentGrid>
+            {children}
+          </MainContentGrid>
+        </MainContent>
       </ThemeProvider>
     </div>
   );

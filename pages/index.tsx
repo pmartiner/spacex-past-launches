@@ -1,11 +1,12 @@
 import Layout from 'components/Layout';
 import client from 'graphql/lib/apollo-client';
-import { COMPANY, PAST_LAUNCHES } from 'graphql/queries';
+import { COMPANY, PAGE_SIZE, PAST_LAUNCHES } from 'graphql/queries';
 import type { GetStaticProps, NextPage } from 'next';
 
 const Home: NextPage = (props) => {
+  console.log(props)
   return (
-    <Layout>
+    <Layout home>
       Hola!
     </Layout>
   );
@@ -13,14 +14,18 @@ const Home: NextPage = (props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const launchesData = await client.query({
-    query: PAST_LAUNCHES
+    query: PAST_LAUNCHES,
+    variables: {
+      limit: PAGE_SIZE,
+      offset: 0
+    }
   });
   const companyData = await client.query({
     query: COMPANY
   });
 
-  const launchesPast = { ...launchesData.data };
-  const company = { ...companyData.data };
+  const launchesPast = [...launchesData.data.launchesPast];
+  const company = {...companyData.data.company};
 
   return {
     props: {
