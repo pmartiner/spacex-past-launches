@@ -6,7 +6,7 @@ const getRandomInt = (min: number, max: number) => {
   maxVal = Math.floor(max);
 
   return Math.floor(Math.random() * (maxVal - minVal) + minVal);
-}
+};
 
 export default getRandomInt;
   
