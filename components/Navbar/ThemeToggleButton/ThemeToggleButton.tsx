@@ -34,7 +34,7 @@ const ToggleButton = styled.button<ToggleButtonProps>`
 
   svg {
     height: auto;
-    width: 2.5rem;
+    width: 20px;
     transition: all 0.3s linear;
     
     // sun icon
