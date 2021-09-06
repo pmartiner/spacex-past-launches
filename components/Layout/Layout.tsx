@@ -61,7 +61,11 @@ const Layout: FC<Props> = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const isDarkTheme = theme === 'dark';
 
-  const toggleTheme = () => setTheme(isDarkTheme ? 'light' : 'dark');
+  const toggleTheme = () => {
+    const updatedTheme = isDarkTheme ? 'light' : 'dark';
+    setTheme(updatedTheme);
+    localStorage.setItem('theme', updatedTheme);
+  };
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
