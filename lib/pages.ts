@@ -13,12 +13,12 @@ const generatePages = (numPages: number) => {
       params: {
         page: `${i}`
       }
-    })
+    });
 
     ++i;
   }
 
   return pagesData;
-}
+};
 
 export default generatePages;
