@@ -58,7 +58,8 @@ const URLs = [
 ];
 
 const Layout: FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useState(prefersDark ? 'dark' : 'light');
   const isDarkTheme = theme === 'dark';
 
   const toggleTheme = () => {
@@ -69,11 +70,12 @@ const Layout: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     if (savedTheme && ['dark', 'light'].includes(savedTheme)) {
       setTheme(savedTheme);
-    } else if (prefersDark) {
+    }
+
+    else if (prefersDark) {
       setTheme('dark');
     }
   }, []);
