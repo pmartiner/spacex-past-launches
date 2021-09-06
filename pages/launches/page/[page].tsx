@@ -131,7 +131,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
     if (el.page === query.page) {
       button = (
         <Link href={`/launches/page/${el.page}`} passHref>
-          <Button as='a' target='_blank' rel='noopener noreferrer'>
+          <Button as='a'>
             {el.page}
           </Button>
         </Link>
@@ -140,7 +140,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
     else {
       button = (
         <Link href={`/launches/page/${el.page}`} passHref>
-          <BorderedButton as='a' target='_blank' rel='noopener noreferrer'>
+          <BorderedButton as='a'>
             {el.page}
           </BorderedButton>
         </Link>
