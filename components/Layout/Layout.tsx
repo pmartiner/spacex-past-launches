@@ -58,7 +58,7 @@ const URLs = [
 ];
 
 const Layout: FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [theme, setTheme] = useState('light');
   const isDarkTheme = theme === 'dark';
 
   const toggleTheme = () => {
