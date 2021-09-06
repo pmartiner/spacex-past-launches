@@ -15,8 +15,8 @@ export const ButtonStyle = css`
 
   :hover {
     color: ${({ theme }) => theme.fontColorHover};
-    background-color: ${({ theme }) => theme.secondaryColor1};
-    border-color: ${({ theme }) => theme.secondaryColor1};
+    background-color: ${({ theme }) => theme.secondaryColor3};
+    border-color: ${({ theme }) => theme.secondaryColor3};
   }
 
   :active {
@@ -35,14 +35,6 @@ export const BorderedButton = styled.button`
   background-color: transparent;
   border: 2px solid;
   border-color: ${({ theme }) => theme.secondaryColor0};
-
-  :hover {
-    background-color: ${({ theme }) => theme.secondaryColor1};
-  }
-
-  :active {
-    background-color: ${({ theme }) => theme.secondaryColor2};
-  }
 `;
 
 export default Button;
