@@ -1,0 +1,32 @@
+{
+  "name": "spacex-past-launches",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.10",
+    "graphql": "^15.5.2",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.2.0",
+    "styled-components": "^5.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.10",
+    "@types/react": "17.0.20",
+    "@types/react-dom": "^17.0.9",
+    "@types/styled-components": "^5.1.14",
+    "babel-plugin-styled-components": "^1.13.2",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "ts-node": "^10.2.1",
+    "tslib": "^2.3.1",
+    "typescript": "4.4.2"
+  }
+}
