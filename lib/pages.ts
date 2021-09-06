@@ -4,7 +4,7 @@ type PageParams = {
   }
 }
 
-const generatePages = (numPages: number) => {
+const generatePages = (numPages: number): PageParams[] => {
   let i = 1;
   const pagesData: PageParams[] = [];
 

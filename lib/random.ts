@@ -1,4 +1,4 @@
-const getRandomInt = (min: number, max: number) => {
+const getRandomInt = (min: number, max: number): number => {
   let minVal = min;
   let maxVal = max;
 
