@@ -52,7 +52,11 @@ const ToggleButton = styled.button<ToggleButtonProps>`
 const ThemeToggleButton: FC<Props> = ({ theme, toggleTheme }) => {
   const isLight = theme === 'light';
   return (
-    <ToggleButton lightTheme={isLight} onClick={toggleTheme} >
+    <ToggleButton
+      lightTheme={isLight}
+      onClick={toggleTheme}
+      aria-label={`Toggle ${isLight ? 'light' : 'dark'} theme`}
+    >
       <Moon />
       <Sun />
     </ToggleButton>

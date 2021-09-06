@@ -227,7 +227,7 @@ const Navbar: FC<Props> = (props: Props) => {
         <Link href='/' passHref>
           <LogoUrl>
             {!props.logoImgSrc && props.logoText}
-            <NavbarBrandLogo src={props.logoImgSrc} alt={props.logoImgAlt} />
+            {props.logoImgSrc && <NavbarBrandLogo src={props.logoImgSrc} alt={props.logoImgAlt} />}
           </LogoUrl>
         </Link>
         <nav>
@@ -249,9 +249,10 @@ const Navbar: FC<Props> = (props: Props) => {
             >
               <GitHub />
             </GitHubUrl>
-            <ThemeToggleButton theme={props.theme} toggleTheme={props.toggleTheme}>
-              Toggle theme
-            </ThemeToggleButton>
+            <ThemeToggleButton
+              theme={props.theme}
+              toggleTheme={props.toggleTheme}
+            />
           </NavbarUl>
         </nav>
       </NavbarWrapper>

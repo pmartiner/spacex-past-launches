@@ -1,5 +1,6 @@
 // Libraries
 import styled from 'styled-components';
+import Head from 'next/head';
 import Image from 'next/image';
 import {
   FaTwitter as Twitter,
@@ -100,6 +101,11 @@ type Props = {
 const AboutPage: NextPage<Props> = ({ company }) => {
   return (
     <Layout>
+      <Head>
+        <title>
+          Welcome to SpaceX Past Launches, by Pablo Martínez
+        </title>
+      </Head>
       <AboutContainer>
         <CompanyHeader>
           {company.name}

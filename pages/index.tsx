@@ -1,17 +1,18 @@
 // Libraries
 import styled from 'styled-components';
 import Link from 'next/link';
+import Head from 'next/head';
 import { FaHeart as Heart } from 'react-icons/fa';
 
 // Components
 import Layout from 'components/Layout';
+import Button from 'components/Button';
 
 // Types
 import type { NextPage } from 'next';
 
 // Constants
 import { NAVBAR_HEIGHT } from 'components/Navbar/Navbar';
-import Button from 'components/Button';
 
 const HomeContainer = styled.div`
   min-height: calc(100vh - ${NAVBAR_HEIGHT}px);
@@ -80,9 +81,14 @@ const HeartContainer = styled.span`
 const Home: NextPage = () => {
   return (
     <Layout pages={false}>
+      <Head>
+        <title>
+          Welcome to SpaceX Past Launches, by Pablo Martínez
+        </title>
+      </Head>
       <HomeContainer>
         <WelcomeHeader>
-          Welcome to <Strong><em>SpaceX past launches</em></Strong>.
+          Welcome to <Strong><em>SpaceX Past Launches</em></Strong>.
         </WelcomeHeader>
         <DescriptionHeader>
           The goal of this project is to show <Strong><em>you</em></Strong> SpaceX&apos;s past launches history. Throught this website you&apos;ll be able to see some pictures of said launches, as well as its date and its Wikipedia article (if it has any).

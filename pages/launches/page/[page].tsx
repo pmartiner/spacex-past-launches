@@ -1,6 +1,7 @@
 // Libraries
 import styled from 'styled-components';
 import Link from 'next/link';
+import Head from 'next/head';
 import { utcToZonedTime } from 'date-fns-tz';
 import intlFormat from 'date-fns/intlFormat';
 
@@ -10,6 +11,7 @@ import { useRouter } from 'next/router';
 // Components
 import Layout from 'components/Layout';
 import ImageCard from 'components/ImageCard/ImageCard';
+import Button, { BorderedButton } from 'components/Button';
 
 // Utils
 import generatePages from 'lib/pages';
@@ -22,7 +24,6 @@ import { NUMBER_PAGES, PAGE_SIZE, PAST_LAUNCHES } from 'graphql/queries';
 // Types
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { LaunchesPastResponseType } from 'graphql/queries/launchesPast.type';
-import Button, { BorderedButton } from 'components/Button';
 import { ReactNode } from 'react';
 
 type PageProps = {
@@ -156,6 +157,11 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
 
   return (
     <Layout pages>
+      <Head>
+        <title>
+          SpaceX Past Missions History
+        </title>
+      </Head>
       {launches}
       <Pagination>
         {totalPages}
