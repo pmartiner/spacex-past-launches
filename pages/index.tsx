@@ -1,6 +1,7 @@
 // Libraries
 import styled from 'styled-components';
 import Link from 'next/link';
+import { FaHeart as Heart } from 'react-icons/fa';
 
 // Components
 import Layout from 'components/Layout';
@@ -61,6 +62,21 @@ const StartButton = styled(Button)`
   }
 `;
 
+const MadeWithLoveByPablo = styled.p`
+  font-weight: bold;
+  font-size: 20px;
+  align-self: center;
+  padding-top: 30px;
+
+  @media screen and (min-width: 1268px) {
+    font-size: 30px;
+  }
+`;
+
+const HeartContainer = styled.span`
+  color: ${({ theme }) => theme.failureColor};
+`;
+
 const Home: NextPage = () => {
   return (
     <Layout pages={false}>
@@ -79,6 +95,15 @@ const Home: NextPage = () => {
             Start
           </StartButton>
         </Link>
+        <MadeWithLoveByPablo>
+          Made with
+          {' '}
+          <HeartContainer>
+            <Heart />
+          </HeartContainer>
+          {' '}
+          by Pablo Martínez
+        </MadeWithLoveByPablo>
       </HomeContainer>
     </Layout>
   );

@@ -1,7 +1,7 @@
 // Libraries
 import React, { FC, HTMLAttributes, useState } from 'react';
-import styled from 'styled-components';
-import { FaBars } from 'react-icons/fa';
+import styled, { css } from 'styled-components';
+import { FaBars, FaGithub as GitHub } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Components
@@ -37,6 +37,7 @@ const NavbarUl = styled.ul<NavbarUlProps>`
 
   @media screen and (min-width: 1268px) {
     display: flex;
+    align-items: center;
   }
 
   @media screen and (max-width: 1267px) {
@@ -146,10 +147,25 @@ const NavItem = styled.li`
   }
 `;
 
-const LogoUrl = styled.a`
+const RegularAnchorStyle = css`
   color: ${({ theme }) => theme.fontColor};
   text-decoration: none;
   cursor: pointer;
+
+  :hover {
+    color: ${({ theme }) => theme.fontColorHover};
+    text-decoration: solid underline ${({ theme }) => theme.fontColorHover} 2px;
+  }
+
+  :active {
+    color: ${({ theme }) => theme.fontColorActive};
+    text-decoration: solid underline ${({ theme }) => theme.fontColorActive} 2px;
+  }
+`;
+
+const LogoUrl = styled.a`
+  ${RegularAnchorStyle}
+  font-size: 24px;
 `;
 
 const NavbarBrandLogo = styled.img`
@@ -157,6 +173,17 @@ const NavbarBrandLogo = styled.img`
 
   @media screen and (max-width: 1267px) {
     max-width: 120px;
+  }
+`;
+
+const GitHubUrl = styled.a`
+  ${RegularAnchorStyle}
+  font-size: 18px;
+  padding-right: 30px;
+  padding-left: 20px;
+  
+  @media screen and (min-width: 1268px) {
+    padding-left: 15px;
   }
 `;
 
@@ -214,6 +241,14 @@ const Navbar: FC<Props> = (props: Props) => {
           </NavbarMenuButton>
           <NavbarUl active={toggle}>
             {URLS}
+            <GitHubUrl
+              href='https://github.com/pmartiner/spacex-past-launches'
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='Source Code'
+            >
+              <GitHub />
+            </GitHubUrl>
             <ThemeToggleButton theme={props.theme} toggleTheme={props.toggleTheme}>
               Toggle theme
             </ThemeToggleButton>

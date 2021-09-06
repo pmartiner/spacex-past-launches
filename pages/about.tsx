@@ -74,7 +74,7 @@ const SocialMediaLink = styled.a`
   font-size: 24px;
   text-decoration: none;
   justify-content: space-around;
-  color: ${({ theme}) => theme.fontColor};
+  color: ${({ theme }) => theme.fontColor};
   margin: 10px 0;
 
   & svg {
@@ -83,7 +83,7 @@ const SocialMediaLink = styled.a`
 
   :hover {
     color: ${({ theme}) => theme.fontColorHover};
-    text-decoration: solid underline ${({ theme}) => theme.fontColorHover} 2px;
+    text-decoration: solid underline ${({ theme }) => theme.fontColorHover} 2px;
   }
 `;
 
@@ -131,22 +131,22 @@ const AboutPage: NextPage<Props> = ({ company }) => {
         </CompanyImageContainer>
         <SocialMediaContainer>
           {company.links?.flickr &&
-          <SocialMediaLink href={company.links.flickr} target='_blank' rel='noopener'>
+          <SocialMediaLink href={company.links.flickr} target='_blank' rel='noopener noreferrer'>
             <Flickr />
             <span>Flickr</span>
           </SocialMediaLink>}
           {company.links?.twitter &&
-          <SocialMediaLink href={company.links.twitter} target='_blank' rel='noopener'>
+          <SocialMediaLink href={company.links.twitter} target='_blank' rel='noopener noreferrer'>
             <Twitter />
             <span>Twitter</span>
           </SocialMediaLink>}
           {company.links?.website &&
-          <SocialMediaLink href={company.links.website} target='_blank' rel='noopener'>
+          <SocialMediaLink href={company.links.website} target='_blank' rel='noopener noreferrer'>
             <Website />
             <span>Website</span>
           </SocialMediaLink>}
           {company.links?.elon_twitter &&
-          <SocialMediaLink href={company.links.elon_twitter} target='_blank' rel='noopener'>
+          <SocialMediaLink href={company.links.elon_twitter} target='_blank' rel='noopener noreferrer'>
             <Twitter />
             <span>Elon Musk&apos;s Twitter</span>
           </SocialMediaLink>}

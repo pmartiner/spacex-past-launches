@@ -113,7 +113,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
             </MissionName>
             <time dateTime={launch.launch_date_utc || ''}>{formattedDate}</time>
             {launch.links?.wikipedia
-              ? <Button as='a' href={launch.links.wikipedia} target='_blank' rel='noopener'>
+              ? <Button as='a' href={launch.links.wikipedia} target='_blank' rel='noopener noreferrer'>
                 Wikipedia article
               </Button>
               : <em>
@@ -131,7 +131,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
     if (el.page === query.page) {
       button = (
         <Link href={`/launches/page/${el.page}`} passHref>
-          <Button as='a' target='_blank' rel='noopener'>
+          <Button as='a' target='_blank' rel='noopener noreferrer'>
             {el.page}
           </Button>
         </Link>
@@ -140,7 +140,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
     else {
       button = (
         <Link href={`/launches/page/${el.page}`} passHref>
-          <BorderedButton as='a' target='_blank' rel='noopener'>
+          <BorderedButton as='a' target='_blank' rel='noopener noreferrer'>
             {el.page}
           </BorderedButton>
         </Link>
