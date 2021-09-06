@@ -1,38 +1,87 @@
+// Libraries
+import styled from 'styled-components';
+import Link from 'next/link';
+
+// Components
 import Layout from 'components/Layout';
-import client from 'graphql/lib/apollo-client';
-import { COMPANY, PAGE_SIZE, PAST_LAUNCHES } from 'graphql/queries';
-import type { GetStaticProps, NextPage } from 'next';
+
+// Types
+import type { NextPage } from 'next';
+
+// Constants
+import { NAVBAR_HEIGHT } from 'components/Navbar/Navbar';
+import Button from 'components/Button';
+
+const HomeContainer = styled.div`
+  min-height: calc(100vh - ${NAVBAR_HEIGHT}px);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: baseline;
+  padding: 0 2rem;
+
+  @media screen and (min-width: 1268px) {
+    padding: 0 8rem;
+  }
+`;
+
+const WelcomeHeader = styled.h1`
+  font-weight: normal;
+  font-size: 60px;
+  text-align: center;
+  align-self: center;
+
+  @media screen and (min-width: 1268px) {
+    font-size: 80px;
+  }
+`;
+
+const DescriptionHeader = styled.h2`
+  font-weight: normal;
+  font-size: 30px;
+
+  @media screen and (min-width: 1268px) {
+    font-size: 50px;
+  }
+`;
+
+const Strong = styled.strong`
+  font-weight: bolder;
+`;
+
+const StartButton = styled(Button)`
+  max-width: 300px;
+  width: 100%;
+  align-self: center;
+  font-size: 30px;
+  margin-top: 20px;
+
+  @media screen and (min-width: 1268px) {
+    font-size: 50px;
+  }
+`;
 
 const Home: NextPage = (props) => {
-  console.log(props)
   return (
-    <Layout home>
-      Hola!
+    <Layout pages={false}>
+      <HomeContainer>
+        <WelcomeHeader>
+          Welcome to <Strong><em>SpaceX past launches</em></Strong>.
+        </WelcomeHeader>
+        <DescriptionHeader>
+          The goal of this project is to show <Strong><em>you</em></Strong> SpaceX&apos;s past launches history. Throught this website you&apos;ll be able to see some pictures of said launches, as well as its date and its Wikipedia article (if it has any).
+        </DescriptionHeader>
+        <DescriptionHeader>
+          Please click the start button and <Strong><em>enjoy the ride</em></Strong>.
+        </DescriptionHeader>
+        <Link href='/launches/page/1' passHref>
+          <StartButton as='a'>
+            Start
+          </StartButton>
+        </Link>
+      </HomeContainer>
     </Layout>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  const launchesData = await client.query({
-    query: PAST_LAUNCHES,
-    variables: {
-      limit: PAGE_SIZE,
-      offset: 0
-    }
-  });
-  const companyData = await client.query({
-    query: COMPANY
-  });
-
-  const launchesPast = [...launchesData.data.launchesPast];
-  const company = {...companyData.data.company};
-
-  return {
-    props: {
-      launchesPast,
-      company
-    }
-  }
 };
 
 export default Home

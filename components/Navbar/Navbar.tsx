@@ -3,7 +3,14 @@ import React, { FC, HTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
 import { FaBars } from 'react-icons/fa';
 import Link from 'next/link';
+
+// Components
 import ThemeToggleButton from './ThemeToggleButton';
+
+// Hooks
+import { useRouter } from 'next/router';
+
+export const NAVBAR_HEIGHT = 25;
 
 const NavbarHeader = styled.header`
   position: relative;
@@ -14,7 +21,7 @@ export const Bars = styled(FaBars)`
   display: none;
   color: ${({ theme }) => theme.fontColor};
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1267px) {
     display: block;
     font-size: 1.8rem;
     cursor: pointer;
@@ -28,11 +35,11 @@ type NavbarUlProps = {
 const NavbarUl = styled.ul<NavbarUlProps>`
   list-style-type: none; 
 
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 1268px) {
     display: flex;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1267px) {
     position: absolute;
     top: 100%;
     right: 0;
@@ -50,12 +57,12 @@ const NavbarUl = styled.ul<NavbarUlProps>`
 
 const NavbarWrapper = styled.div`
   padding: 25px;
-  max-height: 25px;
+  max-height: ${NAVBAR_HEIGHT}px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1267px) {
     justify-content: space-between;
   }
 `;
@@ -70,7 +77,7 @@ const NavbarMenuButton = styled.button`
   border: 0;
   margin: 0;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1267px) {
     display: block;
   }
 `;
@@ -91,8 +98,9 @@ const NavItem = styled.li`
     position: relative;
   }
 
+  &.active a,
   & a:hover {
-    color: ${({ theme }) => theme.fontColorHover};
+    color: ${({ theme }) => theme.fontColorActive};
     outline: 0;
   }
 
@@ -103,29 +111,37 @@ const NavItem = styled.li`
     text-decoration: none;
   }
 
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 1268px) {
     & a:not(:hover):not(:focus)::after {
-      width: 0;
       height: 0;
       width: 0;
       left: 50%;
       opacity: 0;
     }
 
+    &.active a::after,
     & a:hover::after,
     & a::after {
       transition: 0.2s;
       transition-timing-function: cubic-bezier(0.58, 0.3, 0.005, 1);
       z-index: 2;
       transform: scale(1);
-      background-color: ${({ theme }) => theme.backgroundColor};
+      background-color: ${({ theme }) => theme.fontColorActive};
       display: block;
       position: absolute;
       content: "";
       bottom: 0;
       height: 3px;
-      width: 100%;
-      left: 0;
+      width: 70%;
+      left: 15%;
+    }
+
+    &.active a::after,
+    & a:hover::after {
+      width: 70% !important;
+      height: 3px !important;
+      opacity: 1 !important;
+      left: 15% !important;
     }
   }
 `;
@@ -139,7 +155,7 @@ const LogoUrl = styled.a`
 const NavbarBrandLogo = styled.img`
   max-width: 180px;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1267px) {
     max-width: 120px;
   }
 `;
@@ -147,6 +163,7 @@ const NavbarBrandLogo = styled.img`
 type URLType = {
   url: string;
   label: string;
+  activeRoute?: string;
 };
 
 type Props = {
@@ -161,14 +178,21 @@ type Props = {
 
 const Navbar: FC<Props> = (props: Props) => {
   const [toggle, setToggle] = useState(false);
+  const router = useRouter();
 
-  const URLS = (props.menuURLs || []).map(u => (
-    <NavItem key={u.label}>
-      <Link href={u.url}>
-        <a>{u.label}</a>
-      </Link>
-    </NavItem>
-  )); 
+  const URLS = (props.menuURLs || []).map(u => {
+    const activeUrlRegex = u.activeRoute ? new RegExp(u.activeRoute) : undefined;
+    const isActive = activeUrlRegex ? activeUrlRegex.test(router.pathname) : undefined;
+    const activeClassName = isActive ? 'active' : undefined;
+
+    return (
+      <NavItem key={u.label} className={activeClassName}>
+        <Link href={u.url}>
+          <a className={activeClassName}>{u.label}</a>
+        </Link>
+      </NavItem>
+    )
+  }); 
 
   return (
     <NavbarHeader>
@@ -189,10 +213,10 @@ const Navbar: FC<Props> = (props: Props) => {
             <Bars />
           </NavbarMenuButton>
           <NavbarUl active={toggle}>
+            {URLS}
             <ThemeToggleButton theme={props.theme} toggleTheme={props.toggleTheme}>
               Toggle theme
             </ThemeToggleButton>
-            {URLS}
           </NavbarUl>
         </nav>
       </NavbarWrapper>

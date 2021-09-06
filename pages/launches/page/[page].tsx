@@ -107,7 +107,9 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
             ? <Button as='a' href={launch.links.wikipedia}>
               Wikipedia article
             </Button>
-            : 'No Wikipedia article'}
+            : <em>
+              No Wikipedia article  
+            </em>}
           </CardContent>
         </ImageCard>
       </CardContainer>
@@ -144,7 +146,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
   });
 
   return (
-    <Layout home={false}>
+    <Layout pages>
       {launches}
       <Pagination>
         {totalPages}

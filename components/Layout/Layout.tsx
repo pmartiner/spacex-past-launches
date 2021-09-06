@@ -11,7 +11,7 @@ import { darkTheme, GlobalStyles, lightTheme } from 'styles/theme';
 export const siteTitle = 'SpaceX Past Launches';
 
 type Props = {
-  home?: boolean;
+  pages?: boolean;
 };
 
 const MainContent = styled.main`
@@ -40,12 +40,24 @@ const MainContentGrid = styled.div<Props>`
   ${OneColumnStyle}
   
   @media only screen and (min-width: 1268px) {
-    ${({ home }) => home ? OneColumnStyle : MultiColumnStyle}
+    ${({ pages }) => pages ?  MultiColumnStyle : OneColumnStyle}
   }
 `;
 
+const URLs = [
+  {
+    label: 'Launches',
+    url: '/launches/page/1',
+    activeRoute: '/launches/page/'
+  },
+  {
+    label: 'About',
+    url: '/about',
+    activeRoute: '/about'
+  }
+];
 
-const Layout: FC<Props> = ({ home, children }) => {
+const Layout: FC<Props> = ({ pages, children }) => {
   const [theme, setTheme] = useState('light');
   const isDarkTheme = theme === 'dark';
 
@@ -85,6 +97,7 @@ const Layout: FC<Props> = ({ home, children }) => {
           logoText={siteTitle}
           toggleTheme={toggleTheme}
           theme={theme}
+          menuURLs={URLs}
         />
         <MainContent>
           <MainContentGrid>
