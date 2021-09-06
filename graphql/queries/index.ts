@@ -46,6 +46,7 @@ export const COMPANY = gql`
       }
       launch_sites
       name
+      valuation
       summary
       links {
         elon_twitter

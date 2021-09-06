@@ -248,7 +248,7 @@ export type LaunchesPastResponseType = {
   launch_date_unix?: string;
   launch_date_utc?: string;
   launch_site?: LaunchSite;
-  launch_success?: string;
+  launch_success?: boolean;
   launch_year?: string;
   links?: LaunchLinks;
   mission_id?: string[];

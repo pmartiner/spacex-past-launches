@@ -61,7 +61,7 @@ const StartButton = styled(Button)`
   }
 `;
 
-const Home: NextPage = (props) => {
+const Home: NextPage = () => {
   return (
     <Layout pages={false}>
       <HomeContainer>
@@ -84,4 +84,4 @@ const Home: NextPage = (props) => {
   );
 };
 
-export default Home
+export default Home;

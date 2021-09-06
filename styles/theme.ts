@@ -29,7 +29,10 @@ const darkTheme = {
   fontColorActive: '',
   backgroundColor: '',
   backgroundColorLight: '',
-  backgroundColorDark: ''
+  backgroundColorDark: '',
+
+  successColor: '#68E88F',
+  failureColor: '#F24A4A'
 }
 
 const lightTheme: ThemeType = { 
@@ -56,7 +59,10 @@ const lightTheme: ThemeType = {
   fontColorActive: '',
   backgroundColor: '',
   backgroundColorLight: '',
-  backgroundColorDark: ''
+  backgroundColorDark: '',
+
+  successColor: '#68E88F',
+  failureColor: '#F24A4A'
 }
 
 darkTheme.fontColor = lightTheme.primaryColor0;

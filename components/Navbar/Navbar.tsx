@@ -191,7 +191,7 @@ const Navbar: FC<Props> = (props: Props) => {
           <a className={activeClassName}>{u.label}</a>
         </Link>
       </NavItem>
-    )
+    );
   }); 
 
   return (

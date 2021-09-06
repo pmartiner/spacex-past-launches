@@ -51,13 +51,13 @@ const URLs = [
     activeRoute: '/launches/page/'
   },
   {
-    label: 'About',
+    label: 'About SpaceX',
     url: '/about',
     activeRoute: '/about'
   }
 ];
 
-const Layout: FC<Props> = ({ pages, children }) => {
+const Layout: FC<Props> = ({ children }) => {
   const [theme, setTheme] = useState('light');
   const isDarkTheme = theme === 'dark';
 
@@ -107,6 +107,6 @@ const Layout: FC<Props> = ({ pages, children }) => {
       </ThemeProvider>
     </div>
   );
-}
+};
 
 export default Layout;

@@ -48,8 +48,13 @@ const CardContent = styled.div`
   text-align: center;
 `;
 
-const MissionName = styled.h3`
+type MissionNameProps = {
+  success?: boolean;
+}
+
+const MissionName = styled.h3<MissionNameProps>`
   margin: 0;
+  color: ${({ success, theme }) => success ? theme.successColor : theme.failureColor};
 `;
 
 const Pagination = styled.section`
@@ -99,17 +104,21 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
           }}
         >
           <CardContent>
-            <MissionName>
-              Mission name:{' '}{launch.mission_name}
+            <MissionName success={launch.launch_success}>
+              Mission name:
+              {' '}
+              {launch.mission_name}
+              {' '}
+              {launch.launch_success ? '✅' : '❌'}
             </MissionName>
             <time dateTime={launch.launch_date_utc || ''}>{formattedDate}</time>
             {launch.links?.wikipedia
-            ? <Button as='a' href={launch.links.wikipedia}>
-              Wikipedia article
-            </Button>
-            : <em>
-              No Wikipedia article  
-            </em>}
+              ? <Button as='a' href={launch.links.wikipedia} target='_blank' rel='noopener'>
+                Wikipedia article
+              </Button>
+              : <em>
+                No Wikipedia article  
+              </em>}
           </CardContent>
         </ImageCard>
       </CardContainer>
@@ -122,7 +131,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
     if (el.page === query.page) {
       button = (
         <Link href={`/launches/page/${el.page}`} passHref>
-          <Button as='a'>
+          <Button as='a' target='_blank' rel='noopener'>
             {el.page}
           </Button>
         </Link>
@@ -131,7 +140,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
     else {
       button = (
         <Link href={`/launches/page/${el.page}`} passHref>
-          <BorderedButton as='a'>
+          <BorderedButton as='a' target='_blank' rel='noopener'>
             {el.page}
           </BorderedButton>
         </Link>
@@ -152,7 +161,7 @@ const Page: NextPage<PageProps> = ({ launchesPast }) => {
         {totalPages}
       </Pagination>
     </Layout>
-  )
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -172,7 +181,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       launchesPast
     }
-  }
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
