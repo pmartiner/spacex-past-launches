@@ -287,7 +287,7 @@ const Navbar: FC<Props> = (props: Props) => {
             aria-label={toggle ? 'close menu' : 'menu'}
             type='button'
           >
-            <Bars />
+            <Bars title='Menu bars icon' />
           </NavbarMenuButton>
           <NavbarUl active={toggle}>
             {URLS}
@@ -298,7 +298,7 @@ const Navbar: FC<Props> = (props: Props) => {
                 rel='noopener noreferrer'
                 aria-label='Source Code'
               >
-                <GitHub />
+                <GitHub title='GitHub'/>
               </GitHubUrl>
             </NavItem>
             <NavItem>

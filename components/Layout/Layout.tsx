@@ -1,10 +1,13 @@
 // Libraries
 import Head from 'next/head';
+import styled, { css, ThemeProvider } from 'styled-components';
 import { FC, useEffect, useState } from 'react';
 
-// Styles
+// Components
+import Love from 'components/Love';
 import Navbar from 'components/Navbar/Navbar';
-import styled, { css, ThemeProvider } from 'styled-components';
+
+// Styles
 import { darkTheme, GlobalStyles, lightTheme } from 'styles/theme';
 
 // Constants
@@ -111,6 +114,7 @@ const Layout: FC<Props> = ({ children }) => {
           <MainContentGrid>
             {children}
           </MainContentGrid>
+          <Love />
         </MainContent>
       </ThemeProvider>
     </>

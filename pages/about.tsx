@@ -103,7 +103,7 @@ const SocialMediaLink = styled.a`
 
 const Address = styled.p`
   padding-top: 20px;
-  font-size: 18px;
+  font-size: 24px;
   align-self: center;
 `;
 
@@ -166,22 +166,22 @@ const AboutPage: NextPage<Props> = ({ company }) => {
         <SocialMediaContainer>
           {company.links?.flickr &&
           <SocialMediaLink href={company.links.flickr} target='_blank' rel='noopener noreferrer'>
-            <Flickr />
+            <Flickr title='Flickr icon'/>
             <span>Flickr</span>
           </SocialMediaLink>}
           {company.links?.twitter &&
           <SocialMediaLink href={company.links.twitter} target='_blank' rel='noopener noreferrer'>
-            <Twitter />
+            <Twitter title='Twitter icon'/>
             <span>Twitter</span>
           </SocialMediaLink>}
           {company.links?.website &&
           <SocialMediaLink href={company.links.website} target='_blank' rel='noopener noreferrer'>
-            <Website />
+            <Website title='Hyperlink icon' />
             <span>Website</span>
           </SocialMediaLink>}
           {company.links?.elon_twitter &&
           <SocialMediaLink href={company.links.elon_twitter} target='_blank' rel='noopener noreferrer'>
-            <Twitter />
+            <Twitter title='Twitter icon' />
             <span>Elon Musk&apos;s Twitter</span>
           </SocialMediaLink>}
         </SocialMediaContainer>

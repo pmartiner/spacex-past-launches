@@ -59,8 +59,8 @@ const ThemeToggleButton: FC<Props> = ({ theme, toggleTheme, ...rest }) => {
       onClick={toggleTheme}
       aria-label={`Toggle ${isLight ? 'light' : 'dark'} theme`}
     >
-      <Moon />
-      <Sun />
+      <Moon title='Moon icon' />
+      <Sun title='Sun icon' />
     </ToggleButton>
   );
 };
