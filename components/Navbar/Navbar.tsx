@@ -104,7 +104,7 @@ const NavItem = styled.li`
     text-align: center;
     display: flex;
     justify-content: center;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 400;
     text-transform: uppercase;
     padding: 20px;
@@ -120,6 +120,7 @@ const NavItem = styled.li`
   &.active a {
     color: ${({ theme }) => theme.fontColorActive};
     outline: 0;
+    font-weight: bold;
   }
 
   & a:hover {
@@ -201,10 +202,10 @@ const RegularAnchorStyle = css`
 
 const LogoUrl = styled.a`
   ${RegularAnchorStyle}
-  font-size: 20px;
+  font-size: 24px;
 
   @media screen and (min-width: 1268px) {
-    font-size: 28px;
+    font-size: 30px;
   }
 `;
 
@@ -290,20 +291,24 @@ const Navbar: FC<Props> = (props: Props) => {
           </NavbarMenuButton>
           <NavbarUl active={toggle}>
             {URLS}
-            <GitHubUrl
-              href='https://github.com/pmartiner/spacex-past-launches'
-              target='_blank'
-              rel='noopener noreferrer'
-              aria-label='Source Code'
-            >
-              <GitHub />
-            </GitHubUrl>
-            <ToggleThemeContainer>
-              <ThemeToggleButton
-                theme={props.theme}
-                toggleTheme={props.toggleTheme}
-              />
-            </ToggleThemeContainer>
+            <NavItem>
+              <GitHubUrl
+                href='https://github.com/pmartiner/spacex-past-launches'
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Source Code'
+              >
+                <GitHub />
+              </GitHubUrl>
+            </NavItem>
+            <NavItem>
+              <ToggleThemeContainer>
+                <ThemeToggleButton
+                  theme={props.theme}
+                  toggleTheme={props.toggleTheme}
+                />
+              </ToggleThemeContainer>
+            </NavItem>
           </NavbarUl>
         </nav>
       </NavbarWrapper>
