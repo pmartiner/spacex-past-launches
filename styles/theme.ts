@@ -95,8 +95,6 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.6;
     font-size: 18px;
     box-sizing: border-box;
-    /* TEMP: Mobile right margin hack */
-    overflow-x: hidden;
   }
 `;
 

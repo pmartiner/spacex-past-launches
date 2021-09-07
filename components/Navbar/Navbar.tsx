@@ -219,7 +219,7 @@ const NavbarBrandLogo = styled.img`
 const GitHubUrl = styled.a`
   ${RegularAnchorStyle}
   font-size: 18px;
-  padding: 20px;
+  padding: 20px 0;
   width: 100%;
   text-align: center;
   display: flex;
