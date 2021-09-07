@@ -75,7 +75,7 @@ const Home: NextPage = () => {
           Welcome to <Strong><em>SpaceX Past Launches</em></Strong>.
         </WelcomeHeader>
         <DescriptionHeader>
-          The goal of this project is to show <Strong><em>you</em></Strong> SpaceX&apos;s past launches history. Throught this website you&apos;ll be able to see some pictures of said launches, as well as its date and its Wikipedia article (if it has any).
+          The goal of this project is to show <Strong><em>you</em></Strong> SpaceX&apos;s past launches history. Throughout this website you&apos;ll be able to see some pictures of said launches, as well as its date and its Wikipedia article (if it has any).
         </DescriptionHeader>
         <DescriptionHeader>
           Please click the start button and <Strong><em>enjoy the ride</em></Strong>.
