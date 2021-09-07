@@ -37,6 +37,19 @@ const AboutContainer = styled.div`
 
 const CompanyImageContainer = styled.div`
   align-self: center;
+  display: flex;
+  flex-flow: column;
+  font-size: 14px;
+`;
+
+const ImageLicenseLink = styled.a`
+  text-decoration:  solid underline ${({ theme }) => theme.primaryColor4} 2px;;
+  color: ${({ theme }) => theme.primaryColor4};
+
+  :hover {
+    color: ${({ theme}) => theme.fontColorHover};
+    text-decoration: solid underline ${({ theme }) => theme.fontColorHover} 2px;
+  }
 `;
 
 const CompanyImage = styled(Image)`
@@ -129,11 +142,26 @@ const AboutPage: NextPage<Props> = ({ company }) => {
 
         <CompanyImageContainer>
           <CompanyImage
-            src='/images/spacex.jpg'
-            alt='SpaceX facilities picture'
-            width={400}
-            height={267}
+            src='https://live.staticflickr.com/6144/5926572939_208110ec68_b.jpg'
+            alt='SpaceX Launch Control Center'
+            width={410}
+            height={273}
           />
+          <ImageLicenseLink href='https://www.flickr.com/photos/11866475@N05/5926572939'>SpaceX Launch Control Center</ImageLicenseLink>
+          <span>
+            {' '}
+            by
+            {' '}
+            <ImageLicenseLink href='https://www.flickr.com/photos/11866475@N05'>
+              LordJumper
+            </ImageLicenseLink>
+            {' '}
+            is licensed under
+            {' '}
+            <ImageLicenseLink href='https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=ccsearch&atype=html'>
+              CC BY-NC-SA 2.0
+            </ImageLicenseLink>
+          </span>
         </CompanyImageContainer>
         <SocialMediaContainer>
           {company.links?.flickr &&
