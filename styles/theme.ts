@@ -96,6 +96,11 @@ const GlobalStyles = createGlobalStyle`
     font-size: 18px;
     box-sizing: border-box;
   }
+
+  ::selection {
+    background-color: ${({ theme }) => theme.backgroundColorLight};
+    color: ${({ theme }) => theme.fontColorHover};
+  }
 `;
 
 export {
